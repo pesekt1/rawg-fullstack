@@ -5,12 +5,12 @@ import {
   ManyToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { Genres } from "./Genres";
-import { ParentPlatforms } from "./ParentPlatforms";
-import { Stores } from "./Stores";
+import { Genre } from "./Genres";
+import { ParentPlatform } from "./ParentPlatforms";
+import { Store } from "./Stores";
 
 @Entity("games", { schema: "rawgdatabase" })
-export class Games {
+export class Game {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id!: number;
 
@@ -23,16 +23,16 @@ export class Games {
   @Column("int", { name: "metacritic", nullable: true })
   metacritic!: number | null;
 
-  @ManyToMany(() => Genres, (genres) => genres.games)
+  @ManyToMany(() => Genre, (genre) => genre.games)
   @JoinTable({
     name: "games_genres",
     joinColumns: [{ name: "games_id", referencedColumnName: "id" }],
     inverseJoinColumns: [{ name: "genres_id", referencedColumnName: "id" }],
     schema: "rawgdatabase",
   })
-  genres!: Genres[];
+  genres!: Genre[];
 
-  @ManyToMany(() => ParentPlatforms, (parentPlatforms) => parentPlatforms.games)
+  @ManyToMany(() => ParentPlatform, (parentPlatform) => parentPlatform.games)
   @JoinTable({
     name: "games_parent_platforms",
     joinColumns: [{ name: "games_id", referencedColumnName: "id" }],
@@ -41,14 +41,14 @@ export class Games {
     ],
     schema: "rawgdatabase",
   })
-  parentPlatforms!: ParentPlatforms[];
+  parentPlatforms!: ParentPlatform[];
 
-  @ManyToMany(() => Stores, (stores) => stores.games)
+  @ManyToMany(() => Store, (store) => store.games)
   @JoinTable({
     name: "games_stores",
     joinColumns: [{ name: "games_id", referencedColumnName: "id" }],
     inverseJoinColumns: [{ name: "stores_id", referencedColumnName: "id" }],
     schema: "rawgdatabase",
   })
-  stores!: Stores[];
+  stores!: Store[];
 }

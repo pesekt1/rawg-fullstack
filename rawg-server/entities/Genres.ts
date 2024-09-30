@@ -1,8 +1,8 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Games } from "./Games";
+import { Game } from "./Games";
 
 @Entity("genres", { schema: "rawgdatabase" })
-export class Genres {
+export class Genre {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id!: number;
 
@@ -15,6 +15,6 @@ export class Genres {
   @Column("varchar", { name: "image_background", nullable: true, length: 255 })
   image_background!: string | null;
 
-  @ManyToMany(() => Games, (games) => games.genres)
-  games!: Games[];
+  @ManyToMany(() => Game, (games) => games.genres)
+  games!: Game[];
 }
