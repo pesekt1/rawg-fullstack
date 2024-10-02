@@ -17,7 +17,7 @@ genreRouter.get("/", async (req, res) => {
     count: genres.length,
     results: genres,
   };
-  res.json(response);
+  res.send(response);
 });
 
 export default genreRouter;

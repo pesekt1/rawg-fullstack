@@ -17,7 +17,7 @@ gameRouter.get("/", async (req, res) => {
     count: games.length,
     results: games,
   };
-  res.json(response);
+  res.send(response);
 });
 
 export default gameRouter;
