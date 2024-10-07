@@ -51,8 +51,8 @@ CREATE TABLE IF NOT EXISTS `rawgDatabase`.`genres_games` (
   PRIMARY KEY (`genres_id`, `games_id`),
   INDEX `fk_genres_has_games_games1_idx` (`games_id` ASC) VISIBLE,
   INDEX `fk_genres_has_games_genres_idx` (`genres_id` ASC) VISIBLE,
-  CONSTRAINT `fk_genres_has_games_genres` FOREIGN KEY (`genres_id`) REFERENCES `rawg`.`genres` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_genres_has_games_games1` FOREIGN KEY (`games_id`) REFERENCES `rawg`.`games` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_genres_has_games_genres` FOREIGN KEY (`genres_id`) REFERENCES `rawgDatabase`.`genres` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_genres_has_games_games1` FOREIGN KEY (`games_id`) REFERENCES `rawgDatabase`.`games` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `rawg`.`games_parent_platforms`
@@ -63,8 +63,8 @@ CREATE TABLE IF NOT EXISTS `rawgDatabase`.`games_parent_platforms` (
   PRIMARY KEY (`games_id`, `parent_platforms_id`),
   INDEX `fk_games_has_parent_platforms_parent_platforms1_idx` (`parent_platforms_id` ASC) VISIBLE,
   INDEX `fk_games_has_parent_platforms_games1_idx` (`games_id` ASC) VISIBLE,
-  CONSTRAINT `fk_games_has_parent_platforms_games1` FOREIGN KEY (`games_id`) REFERENCES `rawg`.`games` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_games_has_parent_platforms_parent_platforms1` FOREIGN KEY (`parent_platforms_id`) REFERENCES `rawg`.`parent_platforms` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_games_has_parent_platforms_games1` FOREIGN KEY (`games_id`) REFERENCES `rawgDatabase`.`games` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_games_has_parent_platforms_parent_platforms1` FOREIGN KEY (`parent_platforms_id`) REFERENCES `rawgDatabase`.`parent_platforms` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `rawg`.`stores`
@@ -85,8 +85,8 @@ CREATE TABLE IF NOT EXISTS `rawgDatabase`.`games_stores` (
   PRIMARY KEY (`games_id`, `stores_id`),
   INDEX `fk_games_has_stores_stores1_idx` (`stores_id` ASC) VISIBLE,
   INDEX `fk_games_has_stores_games1_idx` (`games_id` ASC) VISIBLE,
-  CONSTRAINT `fk_games_has_stores_games1` FOREIGN KEY (`games_id`) REFERENCES `rawg`.`games` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_games_has_stores_stores1` FOREIGN KEY (`stores_id`) REFERENCES `rawg`.`stores` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_games_has_stores_games1` FOREIGN KEY (`games_id`) REFERENCES `rawgDatabase`.`games` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_games_has_stores_stores1` FOREIGN KEY (`stores_id`) REFERENCES `rawgDatabase`.`stores` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE = InnoDB;
 SET SQL_MODE = @OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
