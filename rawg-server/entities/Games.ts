@@ -41,7 +41,7 @@ export class Game {
     ],
     schema: "rawgdatabase",
   })
-  parentPlatforms!: ParentPlatform[];
+  parent_platforms!: ParentPlatform[];
 
   @ManyToMany(() => Store, (store) => store.games)
   @JoinTable({
