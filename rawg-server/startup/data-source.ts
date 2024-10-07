@@ -1,13 +1,14 @@
 import { DataSource } from "typeorm";
 import "reflect-metadata";
+import path from "path";
 
 const connectionString = process.env.MYSQL_URL;
 
 const isProduction = process.env.NODE_ENV === "production";
 
 const entitiesPath = isProduction
-  ? __dirname + "/../../entities/*.js"
-  : __dirname + "/../entities/*.ts";
+  ? path.join(__dirname, "../entities/**/*.js")
+  : path.join(__dirname, "../entities/**/*.ts");
 
 export const AppDataSource = new DataSource({
   type: "mysql",
