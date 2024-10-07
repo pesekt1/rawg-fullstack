@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `rawgDatabase`.`parent_platforms` (
 -- -----------------------------------------------------
 -- Table `rawg`.`genres_games`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `rawgDatabase`.`genres_games` (
+CREATE TABLE IF NOT EXISTS `rawgDatabase`.`games_genres` (
   `genres_id` INT NOT NULL,
   `games_id` INT NOT NULL,
   PRIMARY KEY (`genres_id`, `games_id`),
