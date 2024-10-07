@@ -6,8 +6,8 @@ import { ParentPlatform } from "../entities/ParentPlatforms";
 interface ModifinedGame {
   id: number;
   name: string;
-  background_image: string;
-  metacritic: number;
+  background_image: string | null;
+  metacritic: number | null;
   parent_platforms: { platform: ParentPlatform }[];
 }
 
