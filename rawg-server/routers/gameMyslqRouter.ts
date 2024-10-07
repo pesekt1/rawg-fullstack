@@ -2,6 +2,8 @@ import { Router } from "express";
 import { Game } from "../entities/Games";
 import { AppDataSource } from "../startup/data-source";
 import { ParentPlatform } from "../entities/ParentPlatforms";
+import { Genre } from "../entities/Genres";
+import { Store } from "../entities/Stores";
 
 interface ModifinedGame {
   id: number;
@@ -9,6 +11,8 @@ interface ModifinedGame {
   background_image: string | null;
   metacritic: number | null;
   parent_platforms: { platform: ParentPlatform }[];
+  genres: Genre[];
+  stores: Store[];
 }
 
 interface Response {
