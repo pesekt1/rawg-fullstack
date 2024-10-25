@@ -60,10 +60,6 @@ gameRouter.get("/", async (req, res) => {
 
   const games = await queryBuilder.getMany();
 
-  console.log(games);
-
-  // const games = await gamesRepository.find({ relations: ["parent_platforms"] });
-
   const modifinedGames = games.map((game) => ({
     ...game,
     parent_platforms: game.parent_platforms?.map((parent_platform) => ({
