@@ -19,6 +19,7 @@ const useGames = (gameQuery: GameQuery) =>
         parent_platforms: gameQuery.platform?.id,
         stores: gameQuery.store?.id,
         ordering: gameQuery.sortOrder,
+        search: gameQuery.searchText,
       },
     },
     [gameQuery]
