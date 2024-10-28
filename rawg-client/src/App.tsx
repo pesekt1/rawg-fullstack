@@ -5,10 +5,11 @@ import { useState } from "react";
 import useGenres, { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/usePlatforms";
-import useStores, { Store } from "./hooks/useStores";
+import { Store } from "./hooks/useStores";
 import CustomList from "./components/reusableComponents/CustomList";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
+import useStaticStores from "./hooks/useStaticStores";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -49,7 +50,7 @@ function App() {
           />
           <CustomList
             title="Stores"
-            useDataHook={useStores}
+            useDataHook={useStaticStores}
             selectedItem={gameQuery.store}
             onSelectItem={(store) => setGameQuery({ ...gameQuery, store })}
           />
