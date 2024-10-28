@@ -48,6 +48,8 @@ const CustomList = <
                 src={getCroppedImageUrl(item.image_background)}
               />
               <Button
+                whiteSpace="normal"
+                textAlign="left"
                 variant="link"
                 fontSize="lg"
                 onClick={() => onSelectItem(item)}
