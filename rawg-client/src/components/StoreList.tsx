@@ -19,8 +19,9 @@ interface Props {
 const StoreList = ({ onSelectStore, selectedStore }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const { data: stores, error, isLoading } = useStores();
+  const { data, error, isLoading } = useStores();
 
+  const stores = data?.results;
   const displayedStores = isExpanded ? stores : stores?.slice(0, 5);
 
   if (isLoading) return <Spinner />;
@@ -31,7 +32,7 @@ const StoreList = ({ onSelectStore, selectedStore }: Props) => {
     <>
       <Heading>Stores</Heading>
       <List>
-        {displayedStores.map((store) => (
+        {displayedStores?.map((store) => (
           <ListItem key={store.id} paddingY="5px">
             <HStack>
               <Image

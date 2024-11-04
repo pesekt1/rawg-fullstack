@@ -10,10 +10,12 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import getCroppedImageUrl from "../../services/image-url";
+import { Response } from "../../hooks/useData";
+import { UseQueryResult } from "@tanstack/react-query";
 
 interface CustomListProps<T> {
   title: string;
-  useDataHook: () => { data: T[]; error: string; isLoading: boolean };
+  useDataHook: () => UseQueryResult<Response<T>, Error>;
   selectedItem: T | null;
   onSelectItem: (item: T) => void;
 }
@@ -27,18 +29,19 @@ const CustomList = <
   onSelectItem,
 }: CustomListProps<T>) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { data: items, error, isLoading } = useDataHook();
+  const { data, error, isLoading } = useDataHook();
 
-  const displayedItems = isExpanded ? items : items.slice(0, 5);
+  const items = data?.results;
+  const displayedItems = isExpanded ? items : items?.slice(0, 5);
 
-  if (error) return <p>Error: {error}</p>;
+  if (error) return <p>Error: {error.message}</p>;
   if (isLoading) return <Spinner />;
 
   return (
     <Box padding={4}>
       <Heading>{title}</Heading>
       <List>
-        {displayedItems.map((item) => (
+        {displayedItems?.map((item) => (
           <ListItem key={item.id} paddingY="5px">
             <HStack>
               <Image
