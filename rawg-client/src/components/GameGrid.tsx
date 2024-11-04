@@ -10,7 +10,8 @@ interface Props {
 }
 
 const GameGrid = ({ gameQuery }: Props) => {
-  const { data: games, error, isLoading } = useGames(gameQuery);
+  const { data, error, isLoading } = useGames(gameQuery);
+  const games = data?.results || [];
 
   const skeletons = [...Array(20).keys()];
   return (
@@ -19,7 +20,7 @@ const GameGrid = ({ gameQuery }: Props) => {
       spacing={3}
       padding={2}
     >
-      {error && <p>{error}</p>}
+      {error && <p>{error.message}</p>}
 
       {isLoading &&
         skeletons.map((skeleton) => (

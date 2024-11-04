@@ -8,8 +8,6 @@ import { Platform } from "./hooks/usePlatforms";
 import useStores, { Store } from "./hooks/useStores";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
-import GenreList from "./components/GenreList";
-import StoreList from "./components/StoreList";
 import CustomList from "./components/reusableComponents/CustomList";
 
 export interface GameQuery {
