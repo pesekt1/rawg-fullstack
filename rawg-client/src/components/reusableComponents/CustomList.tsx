@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import getCroppedImageUrl from "../../services/image-url";
-import { Response } from "../../hooks/useData";
+import { Response } from "../../services/api-client";
 import { UseQueryResult } from "@tanstack/react-query";
 
 interface CustomListProps<T> {

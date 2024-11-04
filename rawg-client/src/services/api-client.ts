@@ -9,3 +9,7 @@ const apiClient = axios.create({
 });
 
 export default apiClient;
+export interface Response<T> {
+  count: number;
+  results: T[];
+}

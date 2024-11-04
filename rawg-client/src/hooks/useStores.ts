@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../services/api-client";
-import { Response } from "./useData";
+import { Response } from "../services/api-client";
 import stores from "../data/stores";
 
 export interface Store {

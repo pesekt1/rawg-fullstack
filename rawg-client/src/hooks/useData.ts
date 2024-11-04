@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
-import apiClient from "../services/api-client";
+import apiClient, { Response } from "../services/api-client";
 import { AxiosRequestConfig } from "axios";
-
-export interface Response<T> {
-  count: number;
-  results: T[];
-}
 
 const useData = <T>(
   endpoint: string,
