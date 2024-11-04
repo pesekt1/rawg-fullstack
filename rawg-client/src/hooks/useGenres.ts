@@ -15,7 +15,7 @@ const useGenres = () => {
   const queryFunction = () =>
     apiClient.get<Response<Genre>>("/genres").then((response) => response.data);
 
-  return useQuery({
+  return useQuery<Response<Genre>, Error>({
     queryKey: ["genres"],
     queryFn: queryFunction,
   });

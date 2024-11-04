@@ -24,7 +24,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
 
   const displayedGenres = isExpanded ? genres : genres?.slice(0, 5);
 
-  if (error) return null;
+  if (error) return <div>{error.message}</div>;
 
   if (isLoading) return <Spinner />;
 
