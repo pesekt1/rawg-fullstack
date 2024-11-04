@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import apiClient from "../services/api-client";
 import { Response } from "../services/api-client";
 import genres from "../data/genres";
+import ApiClient from "../services/api-client";
 
 export interface Genre {
   id: number;
@@ -10,18 +10,14 @@ export interface Genre {
   image_background: string;
 }
 
-// const useGenres = () => useData<Genre>("/genres");
+const apiClient = new ApiClient<Genre>("/genres");
 
-const useGenres = () => {
-  const queryFunction = () =>
-    apiClient.get<Response<Genre>>("/genres").then((response) => response.data);
-
-  return useQuery<Response<Genre>, Error>({
+const useGenres = () =>
+  useQuery<Response<Genre>, Error>({
     queryKey: ["genres"],
-    queryFn: queryFunction,
+    queryFn: () => apiClient.getAll(),
     staleTime: 1000 * 60 * 60 * 24, // 24 hours
     initialData: { count: genres.length, results: genres },
   });
-};
 
 export default useGenres;
