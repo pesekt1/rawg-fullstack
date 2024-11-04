@@ -35,11 +35,12 @@ const CustomList = <
   const displayedItems = isExpanded ? items : items?.slice(0, 5);
 
   if (error) return <p>Error: {error.message}</p>;
-  if (isLoading) return <Spinner />;
+  // if (isLoading) return <Spinner />;
 
   return (
     <Box padding={4}>
       <Heading>{title}</Heading>
+      {isLoading && <Spinner />}
       <List>
         {displayedItems?.map((item) => (
           <ListItem key={item.id} paddingY="5px">
