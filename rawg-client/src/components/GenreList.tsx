@@ -19,7 +19,8 @@ interface Props {
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const { data: genres, error, isLoading } = useGenres();
+  const { data, error, isLoading } = useGenres();
+  const genres = data?.results;
 
   const displayedGenres = isExpanded ? genres : genres?.slice(0, 5);
 
@@ -31,7 +32,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
     <>
       <Heading>Genres</Heading>
       <List>
-        {displayedGenres.map((genre) => (
+        {displayedGenres?.map((genre) => (
           <ListItem key={genre.id} paddingY="5px">
             <HStack>
               <Image
