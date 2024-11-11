@@ -4,6 +4,7 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { GameQuery } from "../App";
+import React from "react";
 
 interface Props {
   gameQuery: GameQuery;
@@ -11,7 +12,6 @@ interface Props {
 
 const GameGrid = ({ gameQuery }: Props) => {
   const { data, error, isLoading } = useGames(gameQuery);
-  const games = data?.results || [];
 
   const skeletons = [...Array(20).keys()];
   return (
@@ -28,11 +28,14 @@ const GameGrid = ({ gameQuery }: Props) => {
             <GameCardSkeleton />
           </GameCardContainer>
         ))}
-
-      {games.map((game) => (
-        <GameCardContainer key={game.id}>
-          <GameCard game={game} />
-        </GameCardContainer>
+      {data?.pages.map((page, index) => (
+        <React.Fragment key={index}>
+          {page.results.map((game) => (
+            <GameCardContainer key={game.id}>
+              <GameCard game={game} />
+            </GameCardContainer>
+          ))}
+        </React.Fragment>
       ))}
     </SimpleGrid>
   );
