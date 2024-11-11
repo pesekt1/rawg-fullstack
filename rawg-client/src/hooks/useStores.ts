@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Response } from "../services/api-client";
 import stores from "../data/stores";
 import ApiClient from "../services/api-client";
+import ms from "ms";
 
 export interface Store {
   id: number;
@@ -16,7 +17,7 @@ const useStores = () => {
   return useQuery<Response<Store>, Error>({
     queryKey: ["stores"],
     queryFn: () => apiClient.getAll(),
-    staleTime: 1000 * 60 * 60 * 24, // 24 hours
+    staleTime: ms("24h"),
     initialData: { count: stores.length, results: stores },
   });
 };
