@@ -16,7 +16,7 @@ import { UseQueryResult } from "@tanstack/react-query";
 interface CustomListProps<T> {
   title: string;
   useDataHook: () => UseQueryResult<Response<T>, Error>;
-  selectedItem: T | null;
+  selectedItemId?: number;
   onSelectItem: (item: T) => void;
 }
 
@@ -25,7 +25,7 @@ const CustomList = <
 >({
   title,
   useDataHook,
-  selectedItem,
+  selectedItemId,
   onSelectItem,
 }: CustomListProps<T>) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -35,7 +35,6 @@ const CustomList = <
   const displayedItems = isExpanded ? items : items?.slice(0, 5);
 
   if (error) return <p>Error: {error.message}</p>;
-  // if (isLoading) return <Spinner />;
 
   return (
     <Box padding={4}>
@@ -58,7 +57,7 @@ const CustomList = <
                 fontSize="lg"
                 onClick={() => onSelectItem(item)}
                 key={item.id}
-                colorScheme={selectedItem?.id === item.id ? "yellow" : "white"}
+                colorScheme={selectedItemId === item.id ? "yellow" : "white"}
               >
                 {item.name}
               </Button>

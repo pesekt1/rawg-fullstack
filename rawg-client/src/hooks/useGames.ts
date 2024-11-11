@@ -25,9 +25,9 @@ const useGames = (gameQuery: GameQuery) => {
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
         params: {
-          genres: gameQuery.genre?.id,
-          parent_platforms: gameQuery.platform?.id,
-          stores: gameQuery.store?.id,
+          genres: gameQuery.genreId,
+          parent_platforms: gameQuery.platformId,
+          stores: gameQuery.storeId,
           ordering: gameQuery.sortOrder,
           search: gameQuery.searchText,
           page: pageParam,

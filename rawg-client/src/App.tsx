@@ -2,18 +2,17 @@ import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import { useState } from "react";
-import useGenres, { Genre } from "./hooks/useGenres";
+import useGenres from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
-import { Platform } from "./hooks/usePlatforms";
-import useStores, { Store } from "./hooks/useStores";
+import useStores from "./hooks/useStores";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
 import CustomList from "./components/reusableComponents/CustomList";
 
 export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
-  store: Store | null;
+  genreId?: number;
+  platformId?: number;
+  storeId?: number;
   sortOrder: string;
   searchText: string;
 }
@@ -44,14 +43,18 @@ function App() {
           <CustomList
             title="Genres"
             useDataHook={useGenres}
-            selectedItem={gameQuery.genre}
-            onSelectItem={(genre) => setGameQuery({ ...gameQuery, genre })}
+            selectedItemId={gameQuery.genreId}
+            onSelectItem={(genre) =>
+              setGameQuery({ ...gameQuery, genreId: genre.id })
+            }
           />
           <CustomList
             title="Stores"
             useDataHook={useStores}
-            selectedItem={gameQuery.store}
-            onSelectItem={(store) => setGameQuery({ ...gameQuery, store })}
+            selectedItemId={gameQuery.storeId}
+            onSelectItem={(store) =>
+              setGameQuery({ ...gameQuery, storeId: store.id })
+            }
           />
         </GridItem>
       </Show>
@@ -60,9 +63,9 @@ function App() {
           <GameHeading gameQuery={gameQuery} />
           <HStack spacing="5" marginBottom={5}>
             <PlatformSelector
-              selectedPlatform={gameQuery.platform}
+              selectedPlatformId={gameQuery.platformId}
               onSelectPlatform={(platform) =>
-                setGameQuery({ ...gameQuery, platform })
+                setGameQuery({ ...gameQuery, platformId: platform.id })
               }
             />
             <SortSelector
