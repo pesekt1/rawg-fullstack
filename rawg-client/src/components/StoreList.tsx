@@ -7,22 +7,21 @@ import {
   Button,
   Spinner,
 } from "@chakra-ui/react";
-import useStores, { Store } from "../hooks/useStores";
+import useStores from "../hooks/useStores";
 import getCroppedImageUrl from "../services/image-url";
 import { useState } from "react";
+import useGameQueryStore from "../store";
 
-interface Props {
-  onSelectStore: (store: Store) => void;
-  selectedStore: Store | null;
-}
-
-const StoreList = ({ onSelectStore, selectedStore }: Props) => {
+const StoreList = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const { data, error, isLoading } = useStores();
 
   const stores = data?.results;
   const displayedStores = isExpanded ? stores : stores?.slice(0, 5);
+
+  const selectedStoreId = useGameQueryStore((state) => state.gameQuery.storeId);
+  const setSelectedStoreId = useGameQueryStore((state) => state.setStoreId);
 
   if (isLoading) return <Spinner />;
 
@@ -44,11 +43,9 @@ const StoreList = ({ onSelectStore, selectedStore }: Props) => {
               <Button
                 variant="link"
                 fontSize="lg"
-                onClick={() => onSelectStore(store)}
+                onClick={() => setSelectedStoreId(store.id)}
                 key={store.id}
-                colorScheme={
-                  store.id === selectedStore?.id ? "yellow" : "white"
-                }
+                colorScheme={store.id === selectedStoreId ? "yellow" : "white"}
               >
                 {store.name}
               </Button>
