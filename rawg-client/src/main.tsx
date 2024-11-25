@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
-              <Route path="/games/:id" element={<GameDetailPage />} />
+              <Route path="/games/:slug" element={<GameDetailPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
